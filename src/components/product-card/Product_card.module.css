@@ -1,0 +1,45 @@
+.card{
+    display: flex;
+    height: 600px;
+    width : 300px;
+    flex-direction: column;
+    /* border: 1px black solid; */
+    border-radius: 2%;
+    margin:2%;
+    padding: 20px;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+}
+.prod_image{
+    height:50%;
+    width:100%
+}
+.card_button{
+    /* position: relative;
+    top: 20px; */
+    font-size: medium;
+    height: 7%;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+.card_hr{
+    width: 80%;
+    margin: 30px;
+}
+.para{
+    overflow: hidden;
+    height: 20%;
+    max-height: 19%;
+}
+.card_desc{
+    height: 40%;
+}
+.title{
+    font-size: large;
+    font-weight: bold;
+    overflow: hidden;
+    height: 19%;
+    max-height: 19%;
+}

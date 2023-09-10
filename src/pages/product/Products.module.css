@@ -1,0 +1,9 @@
+.prod_page{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.card{
+    margin: 20px;
+}

@@ -1,0 +1,23 @@
+import React, { useEffect, useState } from 'react'
+import style from './Product_card.module.css'
+
+function Product_card(props) {
+
+  console.log(props);
+
+  return (
+    <div className={style.card}>
+      <img className={style.prod_image} src={props.data.image} alt='Product Image' />
+      <div className={style.card_desc}>
+      <hr className={style.card_hr}/>
+      <p> ${props.data.price}</p>
+      <h4 className={style.title}>{props.data.title}</h4>
+      <p className={style.para}>{props.data.description}</p>
+      </div>
+      <button className={style.card_button}>Buy Now</button>
+    </div>
+
+  )
+}
+
+export default Product_card
