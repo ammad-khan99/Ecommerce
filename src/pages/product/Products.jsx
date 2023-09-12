@@ -21,7 +21,7 @@ function Products() {
   }, []);
 
   useEffect(() => {
-    selectedCategory === "" ? fetchData() : selectedCategoryData();
+    selectedCategory !== "" &&  selectedCategoryData();
   }, [selectedCategory]);
 
   const handleClickCategory = (category) => {
@@ -67,7 +67,7 @@ function Products() {
                   />
                 );
               })
-            ) : (
+            ) : ( 
               <div style={style1}>
                 <ClipLoader
                   color="#be6b9b"
