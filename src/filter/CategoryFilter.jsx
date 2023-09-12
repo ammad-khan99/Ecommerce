@@ -1,30 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./CategoryFilter.module.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function CategoryFilter(props) {
-  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    getCategories();
-  }, []);
-
-  const getCategories = async () => {
-    try {
-      const data = await fetch("https://fakestoreapi.com/products/categories");
-      const response = await data.json();
-      console.log(response);
-      setCategories(response);
-    } catch (error) {
-      console.log(error);
-    }
+  const style1 = {
+    position: "fixed",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   };
 
   return (
     <div className={style.filter}>
       <h2>Categories</h2>
       <ul>
-        {categories.length > 0 &&
-          categories.map((cat, index) => {
+        {props.categoryData.length > 0 ? (
+          props.categoryData.map((cat, index) => {
             return (
               <li className={style.list} key={index}>
                 <button
@@ -35,7 +27,17 @@ function CategoryFilter(props) {
                 </button>
               </li>
             );
-          })}
+          })
+        ) : (
+          <div style={style1}>
+            <ClipLoader
+              color="#be6b9b"
+              size={100}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
+        )}
       </ul>
     </div>
   );

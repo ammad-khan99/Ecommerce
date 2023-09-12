@@ -8,6 +8,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 function Products() {
   const [product, setProduct] = useState([]);
   const [selectedCategory, setSelectedCategories] = useState("");
+  const [categories, setCategories] = useState([]);
 
   const style1 = {
     position: "fixed",
@@ -18,6 +19,7 @@ function Products() {
 
   useEffect(() => {
     fetchData();
+    getCategories();
   }, []);
 
   useEffect(() => {
@@ -50,11 +52,22 @@ function Products() {
     }
   };
 
+  const getCategories = async () => {
+    try {
+      const data = await fetch("https://fakestoreapi.com/products/categories");
+      const response = await data.json();
+      console.log(response);
+      setCategories(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Navbar />
       <div className={style.body}>
-        <CategoryFilter handleClickCategory={handleClickCategory} />
+        <CategoryFilter handleClickCategory={handleClickCategory} categoryData={categories} />
         <div className={style.product_list}>
           <div className={style.prod_page}>
             {product.length > 0 ? (
