@@ -1,0 +1,24 @@
+.body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form{
+    /* border: 1px black solid; */
+    width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.164);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.inputs{
+    margin: 10px 0;
+}
+.container{
+display: flex;
+justify-content: center;
+align-items: center;
+/* height: 80vh; */
+}
+.error_msg{
+  font-size: smaller;
+}

@@ -1,45 +1,59 @@
-.card{
-    display: flex;
-    height: 600px;
-    width : 300px;
-    flex-direction: column;
-    /* border: 1px black solid; */
-    border-radius: 2%;
-    margin:2%;
-    padding: 20px;
-    align-items: center;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
+.card {
+  display: flex;
+  height: 500px;
+  width: 300px;
+  flex-direction: column;
+  border-radius: 2%;
+  margin: 2%;
+  padding: 20px;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
-.prod_image{
-    height:50%;
-    width:100%
+.prod_image {
+  height: 50%;
+  width: 100%;
+}
+.card_button {
+  font-size: medium;
+  height: 7%;
+  width: 100%;
+  color: rgb(190, 107, 155);
+  border: 1px solid rgb(190, 107, 155);
+  border-radius: 20px;
 }
 .card_button{
-    /* position: relative;
-    top: 20px; */
-    font-size: medium;
-    height: 7%;
-    width: 100%;
-    border: 1px solid black;
-    border-radius: 20px;
+  transition-duration: 0.3s;
 }
-.card_hr{
-    width: 80%;
-    margin: 30px;
+.card_button:hover {
+  background-color: #be6b9b; /* Green */
+  color: white;
 }
-.para{
-    overflow: hidden;
-    height: 20%;
-    max-height: 19%;
+.card_hr {
+  width: 80%;
+  margin: 30px;
 }
-.card_desc{
-    height: 40%;
+.para {
+  overflow: hidden;
+  height: 20%;
+  color: rgb(155, 148, 148);
+  max-height: 14%;
 }
-.title{
-    font-size: large;
-    font-weight: bold;
-    overflow: hidden;
-    height: 19%;
-    max-height: 19%;
+.card_desc {
+  height: 40%;
+}
+.title {
+  font-size: large;
+  font-weight: bold;
+  overflow: hidden;
+  height: 19%;
+  max-height: 13%;
+}
+.price {
+  font-weight: bold;
+  font-size: 15px;
+  color: #be6b9b;
+}
+.span {
+  margin: 0 10%;
 }

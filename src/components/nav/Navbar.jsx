@@ -7,13 +7,18 @@ function Navbar() {
     const handleLogout =()=>{
         localStorage.removeItem('isLoggedIn');
         navigate('/')
-    }
+    };
+
     return (
         <nav className={style.nav}>
+            {/* <div>
+                <img width='15%' src='./../../../public/website-logo.jpg' alt='logo' />
+            </div> */}
             <div className={style.links}>
-                    <NavLink to='/home'>Home</NavLink>
-                    <NavLink to='/products'>Products</NavLink>
-                    <NavLink to='/contact'>Contact Us</NavLink>
+                    <NavLink className={style.links} to='/home'>Home</NavLink>
+                    <NavLink className={style.links} to='/products'>Products</NavLink>
+                    <NavLink className={style.links} to='/cart'>Cart</NavLink>
+                    <NavLink className={style.links} to='/contact'>Contact</NavLink>
             </div>
             <div className={style.logout}>
                 <button className={style.log} onClick={handleLogout}>Logout</button>

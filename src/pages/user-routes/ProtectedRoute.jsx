@@ -8,7 +8,6 @@ function ProtectedRoute() {
     useEffect(() => {
         setToken(JSON.parse(localStorage.getItem('isLoggedIn')))
     }, [])
-    console.log(token);
     return (
         <>
             {
