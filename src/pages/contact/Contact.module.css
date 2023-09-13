@@ -1,24 +1,60 @@
-.body{
+.body {
   display: flex;
   justify-content: center;
+  background-color: #d3c5cd;
   align-items: center;
 }
-.form{
-    /* border: 1px black solid; */
-    width: 400px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.164);
+.form {
+  width: 30rem;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.inputs{
-    margin: 10px 0;
+.inputs {
+  height: 3rem;
+  background: transparent;
+  padding: 8px;
+  margin: 10px 0;
+  width: 20rem;
+  border-radius: 20px;
+  border: 0.1px solid rgb(0, 0, 0);
 }
-.container{
-display: flex;
-justify-content: center;
-align-items: center;
-/* height: 80vh; */
+.text {
+  background: transparent;
+  border: 0.1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 8px;
 }
-.error_msg{
+.container {
+  display: flex;
+  background-color: #d3c5cd;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.error_msg {
   font-size: smaller;
+  margin: 0;
+}
+.submit_btn {
+  font-size: larger;
+  width: 100px;
+  margin-top: 10px;
+  height: 50px;
+  background: transparent;
+  border-radius: 30px;
+  cursor: pointer;
+  color: #000000;
+  border: 2px solid #000000;
+}
+.submit_btn:hover {
+  background-color: #be6b9b;
+  border: 0.5px solid white;
+  color: white;
+  transition-duration: 0.4s;
 }

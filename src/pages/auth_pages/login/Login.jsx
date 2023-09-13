@@ -53,14 +53,13 @@ function Login() {
         }
       });
     } else {
-      alert('Incorrect email and password')
+      alert("Incorrect email or password");
       navigate("/");
     }
   };
 
   return (
     <div className={style.login}>
-      {/* <img className={style.image} alt='Login image' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYMvpmWDtsawqWUDbu5w3XPT5pZbCP2L_z_A&usqp=CAU' /> */}
       <form className={style.form} onSubmit={handleSubmit}>
         <h3 className={style.heading}>Login your account</h3>
         <input

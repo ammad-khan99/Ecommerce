@@ -1,20 +1,19 @@
-.cartPage{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    /* gap: 10rem; */
-height: 80vh;
+.cartPage {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
 }
-.cartDiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20%;
-    height: 60vh;
-    overflow: auto;
+.cartDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20%;
+  height: 60vh;
+  overflow: auto;
 }
-.heading{
-    margin-top: 20%;
-    color: black;
+.heading {
+  margin-top: 20%;
+  color: black;
 }

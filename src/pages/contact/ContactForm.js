@@ -5,11 +5,11 @@ import Navbar from "../../components/nav/Navbar";
 
 function ContactForm() {
   const [name, setName] = useState("");
-  const [fname, setFname] = useState("");
+  const [message, setmessage] = useState("");
   const [cell, setCell] = useState("");
   const [email, setEmail] = useState("");
 
-  let invalid = name || fname || cell || email ? false : true;
+  let invalid = name || message || cell || email ? false : true;
   const validateName = () => {
     if (name.length >= 5 && name.length <= 10) {
       return true;
@@ -18,8 +18,8 @@ function ContactForm() {
     }
   };
 
-  const validateFname = () => {
-    if (fname.length >= 5 && fname.length <= 10) {
+  const validatemessage = () => {
+    if (message.length <= 50) {
       return true;
     } else {
       return false;
@@ -39,11 +39,17 @@ function ContactForm() {
   const handleSubmit = (e) => {
     if (
       validateName() &&
-      validateFname() &&
+      validatemessage() &&
       validateCellNumber() &&
       validateEmail
     ) {
-      alert("Your form has been submitted successfully !");
+      alert(
+        "Your response has been recorded, we will reach back to you soon !"
+      );
+      setCell("");
+      setEmail("");
+      setmessage("");
+      setName("");
     } else {
       alert("Please enter valid values !");
     }
@@ -54,8 +60,8 @@ function ContactForm() {
     setName(e.target.value);
   };
 
-  const handleFname = (e) => {
-    setFname(e.target.value);
+  const handlemessage = (e) => {
+    setmessage(e.target.value);
   };
 
   const handleCell = (e) => {
@@ -72,7 +78,6 @@ function ContactForm() {
       <div className={style.container}>
         <div className={style.form}>
           <form onSubmit={handleSubmit}>
-            {/* <label htmlFor="name">Name</label> */}
             <input
               className={style.inputs}
               name=""
@@ -84,26 +89,17 @@ function ContactForm() {
             ></input>
             <br />
             {!validateName() && (
-              <p className={style.error_msg}>"Name should contain atleast 6 and atmost 10 characters"</p>
+              <p className={style.error_msg}>
+                "Name should contain atleast 6 and atmost 10 characters"
+              </p>
             )}
             <br />
-            {/* <label htmlFor="fname">Father Name</label> */}
-            <input
-              className={style.inputs}
-              id="fname"
-              type="text"
-              value={fname}
-              onChange={handleFname}
-              placeholder="Enter your father name"
-            ></input>
-            <br />
-            {!validateFname() ? (
+            {!validatemessage() ? (
               <p className={style.error_msg}>
-                "Father name should contain atleast 6 and atmost 10 characters"
+                "Message should contain atmost 50 characters"
               </p>
             ) : null}
             <br />
-            {/* <label htmlFor="cell">Cell</label> */}
             <input
               className={style.inputs}
               id="cell"
@@ -119,7 +115,6 @@ function ContactForm() {
               </p>
             )}
             <br />
-            {/* <label htmlFor="email">Email</label> */}
             <input
               className={style.inputs}
               id="email"
@@ -129,9 +124,26 @@ function ContactForm() {
               onChange={handleEmail}
             ></input>
             <br />
-            <p className={style.error_msg}>{validateEmail ? "" : "Email should contain @ "}</p>
+            <p className={style.error_msg}>
+              {validateEmail ? "" : "Email should contain @ "}
+            </p>
             <br />
-            <input type="submit" disabled={invalid} />
+            <textarea
+              cols={25}
+              rows={5}
+              className={style.text}
+              id="message"
+              type="text"
+              value={message}
+              onChange={handlemessage}
+              placeholder="Enter your your message here..."
+            ></textarea>
+            <br />
+            <input
+              className={style.submit_btn}
+              type="submit"
+              disabled={invalid}
+            />
           </form>
         </div>
       </div>

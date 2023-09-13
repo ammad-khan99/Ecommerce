@@ -8,3 +8,8 @@
 .body {
   display: flex;
 }
+@media screen and (max-width: 1181px) {
+  .prod_page {
+    width: 100vw;
+  }
+}

@@ -6,20 +6,24 @@
   position: sticky;
   top: 0;
   width: 17vw;
-  border: 1px black solid;
-  background-color: black;
+  background-color: #aa8099;
 }
-h2 {
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+h1 {
   margin-top: 40%;
-  color: white;
+  color: black;
 }
 .list {
   list-style: none;
-  margin: 30px 0;
+  margin: 10px 0;
   font-size: larger;
 }
 .cat_button {
-  color: rgb(190, 107, 155);
+  color: #3d3d3d;
   border: none;
   background: transparent;
 }
@@ -31,4 +35,9 @@ h2 {
   left: 100px;
   bottom: 50px;
   margin-top: 20%;
+}
+@media screen and (max-width: 1181px) {
+  .filter {
+    display: none;
+  }
 }

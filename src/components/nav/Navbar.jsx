@@ -1,31 +1,51 @@
-import React from 'react'
-import style from './Navbar.module.css'
-import { NavLink, useNavigate } from 'react-router-dom'
-import {ShoppingCart} from 'react-feather'
+import React, { useState } from "react";
+import "./Navbar.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import { ShoppingCart, Menu } from "react-feather";
+import logo from "./../../logo/website-logo.jpg";
 
 function Navbar() {
-    const navigate = useNavigate()
-    const handleLogout =()=>{
-        localStorage.removeItem('isLoggedIn');
-        navigate('/')
-    };
+  const [active, setActive] = useState("links");
 
-    return (
-        <nav className={style.nav}>
-            {/* <div>
-                <img width='15%' src='./../../../public/website-logo.jpg' alt='logo' />
-            </div> */}
-            <div className={style.links}>
-                    <NavLink className={style.links} to='/home'>Home</NavLink>
-                    <NavLink className={style.links} to='/products'>Products</NavLink>
-                    <NavLink className={style.links} to='/contact'>Contact</NavLink>
-            </div>
-            <div className={style.logout}>
-                <button className={style.log} onClick={handleLogout}>Logout</button>
-                    <NavLink className={style.links} to='/cart'><ShoppingCart/></NavLink>
-            </div>
-        </nav>
-    )
+  const toggler = () => {
+    active === "links" ? setActive("links nav_active") : setActive("links");
+  };
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/");
+  };
+
+  return (
+    <nav className="nav">
+      <div>
+        <img height="37rem" src={logo} alt="logo" />
+      </div>
+      <div className={active}>
+        <NavLink className="link_elements" to="/home">
+          Home
+        </NavLink>
+        <NavLink className="link_elements" to="/products">
+          Products
+        </NavLink>
+        <NavLink className="link_elements" to="/contact">
+          Contact
+        </NavLink>
+        <NavLink className="link_elements" to="/cart">
+          <ShoppingCart />
+        </NavLink>
+      </div>
+      <div className="logout">
+        <button className="log" onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
+      <div>
+        <Menu onClick={toggler} className="menu" color="#be6b9b" />
+      </div>
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;

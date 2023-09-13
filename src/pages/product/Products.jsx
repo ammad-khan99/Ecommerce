@@ -9,6 +9,7 @@ function Products() {
   const [product, setProduct] = useState([]);
   const [selectedCategory, setSelectedCategories] = useState("");
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const style1 = {
     position: "fixed",
@@ -23,7 +24,7 @@ function Products() {
   }, []);
 
   useEffect(() => {
-    selectedCategory !== "" &&  selectedCategoryData();
+    selectedCategory !== "" && selectedCategoryData();
   }, [selectedCategory]);
 
   const handleClickCategory = (category) => {
@@ -42,14 +43,17 @@ function Products() {
 
   const selectedCategoryData = async () => {
     try {
+      setIsLoading(true);
       const data = await fetch(
         `https://fakestoreapi.com/products/category/${selectedCategory}`
       );
       const response = await data.json();
       setProduct(response);
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   const getCategories = async () => {
@@ -67,10 +71,13 @@ function Products() {
     <>
       <Navbar />
       <div className={style.body}>
-        <CategoryFilter handleClickCategory={handleClickCategory} categoryData={categories} />
+        <CategoryFilter
+          handleClickCategory={handleClickCategory}
+          categoryData={categories}
+        />
         <div className={style.product_list}>
           <div className={style.prod_page}>
-            {product.length > 0 ? (
+            {!isLoading ? (
               product.map((each, index) => {
                 return (
                   <Product_card
@@ -80,7 +87,7 @@ function Products() {
                   />
                 );
               })
-            ) : ( 
+            ) : (
               <div style={style1}>
                 <ClipLoader
                   color="#be6b9b"
