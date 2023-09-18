@@ -22,7 +22,6 @@ function UserCart() {
     const res = await data.json();
     setCartData(res);
   };
-  console.log("cartData", cartData);
 
   return (
     <>

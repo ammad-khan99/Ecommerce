@@ -27,6 +27,7 @@ function Products() {
     selectedCategory !== "" && selectedCategoryData();
   }, [selectedCategory]);
 
+
   const handleClickCategory = (category) => {
     setSelectedCategories(category);
   };
@@ -60,7 +61,6 @@ function Products() {
     try {
       const data = await fetch("https://fakestoreapi.com/products/categories");
       const response = await data.json();
-      console.log(response);
       setCategories(response);
     } catch (error) {
       console.log(error);

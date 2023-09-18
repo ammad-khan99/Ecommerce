@@ -3,10 +3,11 @@ import "./Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ShoppingCart, Menu } from "react-feather";
 import logo from "./../../logo/website-logo.jpg";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   const [active, setActive] = useState("links");
-
+  const store = useSelector(data => data)
   const toggler = () => {
     active === "links" ? setActive("links nav_active") : setActive("links");
   };
@@ -34,6 +35,7 @@ function Navbar() {
         </NavLink>
         <NavLink className="link_elements" to="/cart">
           <ShoppingCart />
+          <span className="cart_count">{store.cart.carts.length}</span>
         </NavLink>
       </div>
       <div className="logout">

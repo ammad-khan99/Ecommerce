@@ -5,7 +5,7 @@ import cr1 from "./../../logo/slider1.jpg";
 
 function Home() {
   return (
-    <div classNameName="home">
+    <div className="home">
       <Navbar />
       <div
         id="carouselExampleDark"
