@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./CartCard.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import deleteIcon from './../../logo/trash-2.svg'
+import { delItem } from "../../redux/slices/cartSlice";
 
 function CartCard(props) {
+  const dispatch = useDispatch()
+
+const handleDelItem = (id) => {
+  dispatch(delItem(id))
+}
+
   return (
     <div className={style.card}>
       <div>
-        <h4>product id</h4>
-        <span>{props.each.productId}</span>
+        <img
+          src={props.each.product && props.each.product.image}
+          width={100}
+          height={100}
+        />
       </div>
-      <div>
-        <h4>Quantity</h4>
-        <span>{props.each.quantity}</span>
+      <div className={style.desc}>
+        <div>
+          <h4 className={style.title}>{props.each.product.title}</h4>
+        </div>
+        <div className={style.quantity}>
+          <p>Quantity :</p>
+          <span>{props.each.quantity}</span>
+          <span onClick={()=> handleDelItem(props.each.product.id)} className={style.del_btn}><img src={deleteIcon}/></span>
+        </div>
       </div>
     </div>
   );

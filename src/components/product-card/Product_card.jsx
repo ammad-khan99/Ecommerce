@@ -9,7 +9,7 @@ function Product_card(props) {
   const dispatch = useDispatch();
 
   const handleAddToCart= () => {
-dispatch(addItem({product: props.data}))
+dispatch(addItem({product: props.data,quantity:1}))
   }
 
   return (

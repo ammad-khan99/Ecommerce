@@ -2,18 +2,27 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 80vh;
+  height: 100vh;
+}
+.header{
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  height: 10vh;
+  align-items: center;
+  padding: 20px 0;
+}
+.emptyBtn{
+  border: none;
+  background: transparent;
+  color: red;
 }
 .cartDiv {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20%;
-  height: 60vh;
-  overflow: auto;
+  gap: 30%;
 }
 .heading {
-  margin-top: 20%;
   color: black;
 }

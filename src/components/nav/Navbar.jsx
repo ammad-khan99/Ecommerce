@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ShoppingCart, Menu } from "react-feather";
@@ -7,7 +7,17 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const [active, setActive] = useState("links");
-  const store = useSelector(data => data)
+  const [itemCount, setItemCount] = useState(0);
+  const store = useSelector((data) => data);
+
+  useEffect(() => {
+    const itemQuantity = store.cart.carts.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+    setItemCount(itemQuantity);
+    console.log("quantity  : ", itemQuantity);
+  }, [store]);
+
   const toggler = () => {
     active === "links" ? setActive("links nav_active") : setActive("links");
   };
@@ -35,7 +45,7 @@ function Navbar() {
         </NavLink>
         <NavLink className="link_elements" to="/cart">
           <ShoppingCart />
-          <span className="cart_count">{store.cart.carts.length}</span>
+          <span className="cart_count">{itemCount}</span>
         </NavLink>
       </div>
       <div className="logout">

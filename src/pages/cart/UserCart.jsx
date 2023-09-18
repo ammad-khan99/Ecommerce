@@ -1,52 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import style from "./UserCart.module.css";
 import CartCard from "../../components/cart-card/CartCard";
 import Navbar from "../../components/nav/Navbar";
-import ClipLoader from "react-spinners/ClipLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { emptyCart } from "../../redux/slices/cartSlice";
 
 function UserCart() {
-  const [cartData, setCartData] = useState([]);
-  const style1 = {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-  };
+  const cartStore = useSelector((store) => store.cart.carts);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    getCartData();
-  }, []);
+console.log('cart : ',cartStore);
 
-  const getCartData = async () => {
-    const data = await fetch("https://fakestoreapi.com/carts/user/4");
-    const res = await data.json();
-    setCartData(res);
+  const handleDelCart = () => {
+    dispatch(emptyCart());
   };
 
   return (
     <>
       <Navbar />
       <div className={style.cartPage}>
-        <div>
-          {cartData.length > 0 ? (
-            <h2 className={style.heading}> User {cartData[0].userId} Cart </h2>
-          ) : (
-            <div style={style1}>
-              <ClipLoader
-                color="#be6b9b"
-                size={100}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-              />
-            </div>
-          )}
+        <div className={style.header}>
+          <h2 className={style.heading}> User Cart </h2>
+          <button className={style.emptyBtn} onClick={handleDelCart}>
+            Empty Cart
+          </button>
         </div>
         <div>
           <div className={style.cartDiv}>
-            {cartData.length > 0 &&
-              cartData[0].products.map((each, index) => {
+            {cartStore.length > 0 ? (
+              cartStore.map((each, index) => {
                 return <CartCard key={index} each={each} />;
-              })}
+              })
+            ) : (
+              <p style={{ margin: 100 }}>No item added</p>
+            )}
           </div>
         </div>
       </div>
