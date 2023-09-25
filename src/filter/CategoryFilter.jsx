@@ -3,6 +3,7 @@ import style from "./CategoryFilter.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 
 function CategoryFilter(props) {
+  const { categoryData, handleClickCategory } = props;
   const style1 = {
     position: "fixed",
     top: "50%",
@@ -15,12 +16,12 @@ function CategoryFilter(props) {
       <h1>Categories</h1>
       <hr color="black" width="70%" />
       <ul>
-        {props.categoryData.length > 0 ? (
-          props.categoryData.map((cat, index) => {
+        {categoryData && categoryData.length > 0 ? (
+          categoryData.map((cat, index) => {
             return (
               <li className={style.list} key={index}>
                 <button
-                  onClick={() => props.handleClickCategory(cat)}
+                  onClick={() => handleClickCategory(cat)}
                   className={style.cat_button}
                 >
                   {cat}

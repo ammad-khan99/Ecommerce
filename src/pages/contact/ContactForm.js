@@ -90,16 +90,11 @@ function ContactForm() {
             <br />
             {!validateName() && (
               <p className={style.error_msg}>
-                "Name should contain atleast 6 and atmost 10 characters"
+                Name should contain atleast 6 and atmost 10 characters
               </p>
             )}
             <br />
-            {!validatemessage() ? (
-              <p className={style.error_msg}>
-                "Message should contain atmost 50 characters"
-              </p>
-            ) : null}
-            <br />
+          
             <input
               className={style.inputs}
               id="cell"
@@ -111,7 +106,7 @@ function ContactForm() {
             <br />
             {!validateCellNumber() && (
               <p className={style.error_msg}>
-                "Cell number should contain atleast 5 and atmost 11 numbers"
+                Cell number should contain atleast 5 and atmost 11 numbers
               </p>
             )}
             <br />
@@ -138,6 +133,12 @@ function ContactForm() {
               onChange={handlemessage}
               placeholder="Enter your your message here..."
             ></textarea>
+            <br />
+            {validatemessage() ? null : (
+              <p className={style.error_msg}>
+                Message should contain atmost 50 characters
+              </p>
+            ) }
             <br />
             <input
               className={style.submit_btn}

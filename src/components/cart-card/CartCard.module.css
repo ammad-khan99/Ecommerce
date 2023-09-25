@@ -22,7 +22,11 @@
 .quantity {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 1rem;
+}
+.quantity_text{
+  margin: 0;
 }
 .title {
   overflow: hidden;
@@ -34,8 +38,17 @@
 }
 .card:hover {
   opacity: 1;
-  transition: 0.5s;
-  transform: translateY(-10px);
+  transition: 0.3s;
+  transform: translateY(-6px);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 20px 30px -8px;
+}
+.count{
+  height: 15px;
+  width: 15px;
+  background-color: rgb(218, 218, 218);
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+  justify-content: center;
 }

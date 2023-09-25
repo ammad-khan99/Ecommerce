@@ -12,8 +12,8 @@
 }
 .card:hover {
   opacity: 1;
-  transition: 0.5s;
-  transform: translateY(20px);
+  transition: 0.2s;
+  transform: translateY(10px);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 20px 30px -8px;
 }

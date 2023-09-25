@@ -15,7 +15,6 @@ function Navbar() {
       return acc + item.quantity;
     }, 0);
     setItemCount(itemQuantity);
-    console.log("quantity  : ", itemQuantity);
   }, [store]);
 
   const toggler = () => {
