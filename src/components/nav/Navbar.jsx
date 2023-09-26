@@ -8,15 +8,15 @@ import { useSelector } from "react-redux";
 function Navbar() {
   const [active, setActive] = useState("links");
   const [itemCount, setItemCount] = useState(0);
-  const store = useSelector((data) => data);
+  const cart = useSelector((data) => data.cart.carts);
 
   useEffect(() => {
-    const itemQuantity = store.cart.carts.reduce((acc, item) => {
+    const itemQuantity = cart.reduce((acc, item) => {
       return acc + item.quantity;
     }, 0);
     console.log('log in nav',itemQuantity);
     setItemCount(itemQuantity);
-  }, [store]);
+  }, [cart]);
 
   const toggler = () => {
     active === "links" ? setActive("links nav_active") : setActive("links");

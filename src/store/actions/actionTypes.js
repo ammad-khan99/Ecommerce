@@ -6,3 +6,4 @@ const actionTypes = {
   DEC_ITEM_COUNT: "DEC_ITEM_COUNT",
 };
 export default actionTypes;
+

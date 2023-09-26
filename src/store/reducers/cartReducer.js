@@ -5,7 +5,6 @@ const initialState = {
 const cartReducer = (state = initialState ,action)=>{
 switch(action.type){
     case 'ADD_ITEM': {
-        // console.log('state',state,'action',action)
         const item = state.carts.findIndex(
             (cartItem) => cartItem.product.id === action.payload.product.id
           );
@@ -26,7 +25,6 @@ switch(action.type){
     case 'EMPTY_CART':{
         state.carts.length = 0;
           return state
-        // break
     }
     case 'INC_ITEM_COUNT':{
         const item = state.carts.findIndex(
