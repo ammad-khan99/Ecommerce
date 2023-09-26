@@ -8,6 +8,7 @@ import ProtectedRoute from "./pages/user-routes/ProtectedRoute";
 import NotFound from "./pages/error-page/NotFound";
 import ContactForm from "./pages/contact/ContactForm";
 import UserCart from "./pages/cart/UserCart";
+import { protectedRoutes } from "./utils/routes/routes";
 
 function App() {
   return (
@@ -15,10 +16,13 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<UserCart />} />
-          <Route path="/contact" element={<ContactForm />} />
+          <Route path="/contact" element={<ContactForm />} /> */}
+          {protectedRoutes.map((route) => (
+            <Route path={route.path} element={route.element} />
+          ))}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -27,3 +31,4 @@ function App() {
 }
 
 export default App;
+

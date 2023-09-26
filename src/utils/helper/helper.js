@@ -1,9 +1,9 @@
-export const fetchData = async (url,state,loader) => {
+export const fetchData = async (url,setState,loader) => {
     try {
       loader(true);
       const data = await fetch(url);
       const res = await data.json();
-      state(res);
+      setState(res);
     } catch (error) {
       loader(false);
       console.log(error);

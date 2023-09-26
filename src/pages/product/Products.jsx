@@ -4,7 +4,7 @@ import style from "./Products.module.css";
 import Navbar from "../../components/nav/Navbar";
 import CategoryFilter from "../../filter/CategoryFilter";
 import ClipLoader from "react-spinners/ClipLoader";
-import { fetchData } from "../../utils/HelperFunctions";
+import { fetchData } from "../../utils/helper/helper";
 
 function Products() {
   const [product, setProduct] = useState([]);
