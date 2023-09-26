@@ -2,7 +2,8 @@ import React from "react";
 import style from "./CartCard.module.css";
 import { useDispatch } from "react-redux";
 import deleteIcon from './../../logo/trash-2.svg'
-import { delItem, decItemCount, incItemCount } from "../../redux/slices/cartSlice";
+// import { delItem, decItemCount, incItemCount } from "../../redux/slices/cartSlice";
+import { delItem, decItemCount, incItemCount } from "../../store/actions/index";
 
 function CartCard(props) {
   const { quantity, product} = props.each

@@ -1,12 +1,13 @@
 import React from "react";
 import style from "./Product_card.module.css";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/slices/cartSlice";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../store/actions";
+// import { addItem } from "../../redux/slices/cartSlice";
 
 function Product_card(props) {
   const {data} = props
+  const cartStore = useSelector(store => store.cart)
+  // console.log('cartStore',cartStore);
   const dispatch = useDispatch();
 
   const handleAddToCart= () => {

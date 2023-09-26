@@ -14,6 +14,7 @@ function Navbar() {
     const itemQuantity = store.cart.carts.reduce((acc, item) => {
       return acc + item.quantity;
     }, 0);
+    console.log('log in nav',itemQuantity);
     setItemCount(itemQuantity);
   }, [store]);
 

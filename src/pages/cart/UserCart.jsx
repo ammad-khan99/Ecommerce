@@ -8,11 +8,13 @@ import { emptyCart } from "../../redux/slices/cartSlice";
 function UserCart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const cartStore = useSelector((store) => store.cart.carts);
+  console.log('cartstore : ',cartStore);
   const dispatch = useDispatch();
   
   useEffect(() => {
     const price = cartStore.reduce((acc, prod) =>  acc = acc + prod.product.price * prod.quantity
     ,0);
+    console.log('price in cart',price);
     setTotalPrice(price.toFixed(2));
   }, [cartStore]);
 
