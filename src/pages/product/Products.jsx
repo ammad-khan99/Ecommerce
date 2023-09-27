@@ -5,15 +5,20 @@ import Navbar from "../../components/nav/Navbar";
 import CategoryFilter from "../../filter/CategoryFilter";
 import ClipLoader from "react-spinners/ClipLoader";
 import { fetchData } from "../../utils/helper/helper";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../store/actions/inventoryActions";
+import {urlConstants} from '../../utils/constants'
 
 function Products() {
   const [product, setProduct] = useState([]);
   const [selectedCategory, setSelectedCategories] = useState("");
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const PRODUCTS_URL = "https://fakestoreapi.com/products";
-  const CATEGORIES_URL = "https://fakestoreapi.com/products/categories";
+  // const PRODUCTS_URL = "https://fakestoreapi.com/products";
+  // const CATEGORIES_URL = "https://fakestoreapi.com/products/categories";
   const SELECTED_CATEGORY_URL = `https://fakestoreapi.com/products/category/${selectedCategory}`;
+  const dispatch = useDispatch();
+  const inventory = useSelector(store=> store.inventory.products)
 
   const style1 = {
     position: "fixed",
@@ -23,8 +28,9 @@ function Products() {
   };
 
   useEffect(() => {
-    fetchData(PRODUCTS_URL, setProduct, setIsLoading);
-    fetchData(CATEGORIES_URL, setCategories, setIsLoading);
+    dispatch(getProducts());
+    // fetchData(PRODUCTS_URL, setProduct, setIsLoading);
+    fetchData(urlConstants.CATEGORIES_URL, setCategories, setIsLoading);
   }, []);
 
   useEffect(() => {
@@ -47,7 +53,7 @@ function Products() {
         <div className={style.product_list}>
           <div className={style.prod_page}>
             {!isLoading ? (
-              product.map((each, index) => {
+              inventory.map((each, index) => {
                 return (
                   <Product_card
                     className={style.card}

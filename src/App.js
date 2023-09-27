@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import ProtectedRoute from "./pages/user-routes/ProtectedRoute";
-import { routes } from "./utils/routes/routes";
+import { routes } from "./routes";
 
 function App() {
   return (

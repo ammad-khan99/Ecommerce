@@ -1,31 +1,31 @@
-import actionTypes from "./actionTypes"
+import {cartActions} from "./actionTypes"
 
 export const addItem = (payload)=>{
     return{
-        type: actionTypes.ADD_ITEM,
+        type: cartActions.ADD_ITEM,
         payload: payload
     }
 }
 export const emptyCart = ()=>{
     return{
-        type: actionTypes.EMPTY_CART
+        type: cartActions.EMPTY_CART
     }
 }
 export const delItem = (payload)=>{
     return{
-        type: actionTypes.DEL_ITEM,
+        type: cartActions.DEL_ITEM,
         payload: payload
     }
 }
 export const incItemCount = (payload)=>{
     return{
-        type: actionTypes.INC_ITEM_COUNT,
+        type: cartActions.INC_ITEM_COUNT,
         payload: payload
     }
 }
 export const decItemCount = (payload)=>{
     return{
-        type: actionTypes.DEC_ITEM_COUNT,
+        type: cartActions.DEC_ITEM_COUNT,
         payload: payload
     }
 }

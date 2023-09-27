@@ -1,10 +1,7 @@
-const constants = [
-  {
-    HOME_ROUTE: "/home",
-    PRODUCTS_ROUTE: "/products",
-    CART_ROUTE: "/cart",
-    CONTACT_ROUTE: "/contact",
-  },
-];
+import routeConstants from "./routeConstants";
+import urlConstants from "./urlConstants";
 
-export default constants;
+export {
+    routeConstants,
+    urlConstants
+}
