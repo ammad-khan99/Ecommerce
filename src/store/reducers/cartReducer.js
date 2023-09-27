@@ -1,51 +1,58 @@
-const initialState = {
-    carts:[]
-}
+import actionTypes from "../actions/actionTypes";
 
-const cartReducer = (state = initialState ,action)=>{
-switch(action.type){
-    case 'ADD_ITEM': {
-        const item = state.carts.findIndex(
-            (cartItem) => cartItem.product.id === action.payload.product.id
-          );
-          if (item === -1) {
-            state.carts.push(action.payload);
-          } else {
-            state.carts[item].quantity++;
+const initialState = {
+  carts: [],
+};
+
+const cartReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.ADD_ITEM: {
+      const item = state.carts.findIndex(
+        (cartItem) => cartItem.id === action.payload.product.id
+      );
+      if (item === -1) {
+        return {
+          carts: [...state.carts, { ...action.payload.product, quantity: 1 }],
+        };
+      } else {
+        const tempCart = [...state.carts];
+
+        tempCart[item].quantity++;
+        return { carts: [...tempCart] };
+      }
+    }
+    case actionTypes.DEL_ITEM: {
+      const item = state.carts.filter(
+        (cartItem) => cartItem.id !== action.payload
+      );
+      return { carts: [...item] };
+    }
+    case actionTypes.EMPTY_CART: {
+      return { carts: [] };
+    }
+    case actionTypes.INC_ITEM_COUNT: {
+      const item = state.carts.map((cartItem) => {
+        if (cartItem.id === action.payload) {
+          cartItem.quantity++;
+        }
+        return cartItem;
+      });
+      return { carts: [...item] };
+    }
+    case actionTypes.DEC_ITEM_COUNT: {
+      const item = state.carts.map((cartItem) => {
+        if (cartItem.id === action.payload) {
+          if (cartItem.quantity > 0) {
+            cartItem.quantity--;
           }
-        return state
+        }
+        return cartItem;
+      });
+      return { carts: [...item] };
     }
-    case 'DEL_ITEM':{
-        const item = state.carts.findIndex(
-            (cartItem) => cartItem.product.id === action.payload
-          );
-          state.carts.splice(item, 1);
-        return state
-    }
-    case 'EMPTY_CART':{
-        state.carts.length = 0;
-          return state
-    }
-    case 'INC_ITEM_COUNT':{
-        const item = state.carts.findIndex(
-            (cartItem) => cartItem.product.id === action.payload
-          );
-          console.log('item',item);
-          console.log('state',state.carts);
-          state.carts && state.carts[item].quantity++;
-          return state
-    }
-    case 'DEC_ITEM_COUNT':{
-        const item = state.carts.findIndex(
-            (cartItem) => cartItem.product.id === action.payload
-          );
-          if(state.carts[item].quantity > 0){
-          state.carts[item].quantity--;
-          }
-          return state
-    }
-        default:return state
-}
-}
+    default:
+      return state;
+  }
+};
 
 export default cartReducer;

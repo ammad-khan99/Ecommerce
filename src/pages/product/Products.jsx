@@ -11,9 +11,9 @@ function Products() {
   const [selectedCategory, setSelectedCategories] = useState("");
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const PRODUCTS_URL = "https://fakestoreapi.com/products"
-  const CATEGORIES_URL = "https://fakestoreapi.com/products/categories"
-  const SELECTED_CATEGORY_URL = `https://fakestoreapi.com/products/category/${selectedCategory}`
+  const PRODUCTS_URL = "https://fakestoreapi.com/products";
+  const CATEGORIES_URL = "https://fakestoreapi.com/products/categories";
+  const SELECTED_CATEGORY_URL = `https://fakestoreapi.com/products/category/${selectedCategory}`;
 
   const style1 = {
     position: "fixed",
@@ -23,53 +23,18 @@ function Products() {
   };
 
   useEffect(() => {
-    fetchData(PRODUCTS_URL,setProduct,setIsLoading);
-    fetchData(CATEGORIES_URL,setCategories,setIsLoading);
+    fetchData(PRODUCTS_URL, setProduct, setIsLoading);
+    fetchData(CATEGORIES_URL, setCategories, setIsLoading);
   }, []);
 
   useEffect(() => {
-    selectedCategory !== "" && fetchData(SELECTED_CATEGORY_URL,setProduct,setIsLoading);
+    selectedCategory !== "" &&
+      fetchData(SELECTED_CATEGORY_URL, setProduct, setIsLoading);
   }, [selectedCategory]);
-
 
   const handleClickCategory = (category) => {
     setSelectedCategories(category);
   };
-
-  // const fetchData = async () => {
-  //   try {
-  //     const data = await fetch("https://fakestoreapi.com/products");
-  //     const res = await data.json();
-  //     setProduct(res);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // const selectedCategoryData = async () => {
-  //   try {
-  //     setIsLoading(true);
-  //     const data = await fetch(
-  //       `https://fakestoreapi.com/products/category/${selectedCategory}`
-  //     );
-  //     const response = await data.json();
-  //     setProduct(response);
-  //   } catch (error) {
-  //     setIsLoading(false);
-  //     console.log(error);
-  //   }
-  //   setIsLoading(false);
-  // };
-
-  // const getCategories = async () => {
-  //   try {
-  //     const data = await fetch("https://fakestoreapi.com/products/categories");
-  //     const response = await data.json();
-  //     setCategories(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <>

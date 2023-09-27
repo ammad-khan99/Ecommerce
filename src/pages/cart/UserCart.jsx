@@ -3,18 +3,18 @@ import style from "./UserCart.module.css";
 import CartCard from "../../components/cart-card/CartCard";
 import Navbar from "../../components/nav/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyCart } from "../../redux/slices/cartSlice";
+import { emptyCart } from "../../store/actions";
 
 function UserCart() {
   const [totalPrice, setTotalPrice] = useState(0);
   const cartStore = useSelector((store) => store.cart.carts);
-  console.log('cartstore : ',cartStore);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
-    const price = cartStore.reduce((acc, prod) =>  acc = acc + prod.product.price * prod.quantity
-    ,0);
-    console.log('price in cart',price);
+    const price = cartStore.reduce(
+      (acc, prod) => (acc = acc + prod.price * prod.quantity),
+      0
+    );
     setTotalPrice(price.toFixed(2));
   }, [cartStore]);
 
@@ -27,7 +27,7 @@ function UserCart() {
       <Navbar />
       <div className={style.cartPage}>
         <div className={style.header}>
-          <h2 className={style.heading}> User Cart  ${totalPrice}</h2>
+          <h2 className={style.heading}> User Cart ${totalPrice}</h2>
           <button className={style.emptyBtn} onClick={handleDelCart}>
             Empty Cart
           </button>

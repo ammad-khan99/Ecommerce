@@ -3,13 +3,13 @@ import cartReducer from "./cartReducer";
 import persistReducer from "redux-persist/es/persistReducer";
 import storage from "redux-persist/lib/storage";
 
-const customerPersistConfig = {
-    key: "cart",
-    storage,
-  };
+const cartPersistConfig = {
+  key: "cart",
+  storage,
+};
 
 const rootReducer = combineReducers({
-    cart: persistReducer(customerPersistConfig, cartReducer),
-})
+  cart: persistReducer(cartPersistConfig, cartReducer),
+});
 
 export default rootReducer;

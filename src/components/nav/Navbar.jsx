@@ -14,10 +14,8 @@ function Navbar() {
     const itemQuantity = cart.reduce((acc, item) => {
       return acc + item.quantity;
     }, 0);
-    console.log('log in nav',itemQuantity);
     setItemCount(itemQuantity);
   }, [cart]);
-
   const toggler = () => {
     active === "links" ? setActive("links nav_active") : setActive("links");
   };
