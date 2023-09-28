@@ -9,22 +9,18 @@ import AppWrapper from "./layout/AppWrapper";
 function App() {
   return (
     <Routes>
-          {/* {routes.map( (route, index) => {
-            return   <Route key={index} path={route.path} element={route.element} />
-          }
-          )} */}
-      <Route path="/" element={<AppWrapper />}>
 
       {routes.map((route, index) =>
         route.isProtected ? (
           <Route key={index} element={<ProtectedRoute />}>
+          <Route path="/" element={<AppWrapper />}>
             <Route {...route} />
+          </Route>
           </Route>
         ) : (
           <Route key={index} path={route.path} element={route.element} />
           )
           )}
-          </Route>
     </Routes>
   );
 }
