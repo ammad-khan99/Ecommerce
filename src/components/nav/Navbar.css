@@ -1,15 +1,17 @@
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 10vh;
   width: 100%;
   background-color: #3d3d3d;
   z-index: 1;
   position: sticky;
   top: 0;
+  gap: 9;
+  padding: 0 10%;
 }
-.links {
+/* .links {
   display: flex;
   justify-content: space-around;
   font-size: large;
@@ -19,7 +21,7 @@
   text-decoration: none;
   color: #be6b9b;
   width: 30%;
-}
+} */
 .link_elements {
   font-size: large;
   font-weight: bold;

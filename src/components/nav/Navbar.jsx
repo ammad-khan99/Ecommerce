@@ -31,22 +31,11 @@ function Navbar() {
       <div>
         <img height="37rem" src={logo} alt="logo" />
       </div>
-      <div className={active}>
-        <NavLink className="link_elements" to="/home">
-          Home
-        </NavLink>
-        <NavLink className="link_elements" to="/products">
-          Products
-        </NavLink>
-        <NavLink className="link_elements" to="/contact">
-          Contact
-        </NavLink>
-        <NavLink className="link_elements" to="/cart">
+      <div className="logout">
+      <NavLink className="link_elements" to="/cart">
           <ShoppingCart />
           <span className="cart_count">{itemCount}</span>
         </NavLink>
-      </div>
-      <div className="logout">
         <button className="log" onClick={handleLogout}>
           Logout
         </button>

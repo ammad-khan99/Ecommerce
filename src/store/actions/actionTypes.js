@@ -8,6 +8,7 @@ const cartActions = {
 
 const inventoryActions = {
   GET_PRODUCTS: "GET_PRODUCTS",
+  GET_PRODUCTS_FAILURE: "GET_PRODUCTS_FAILURE",
 };
 
 export { cartActions, inventoryActions };

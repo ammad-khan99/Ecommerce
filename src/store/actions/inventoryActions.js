@@ -13,6 +13,9 @@ export const getProducts = () => {
       });
     } catch (error) {
       console.log(error);
+      dispatch({
+        type: inventoryActions.GET_PRODUCTS_FAILURE,
+      });
     }
   };
 };

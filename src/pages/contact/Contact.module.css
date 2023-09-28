@@ -1,10 +1,12 @@
 .body {
   display: flex;
   justify-content: center;
-  background-color: #d3c5cd;
+  /* background-color: #d3c5cd; */
   align-items: center;
 }
 .form {
+  display: flex;
+  justify-content: center;
   width: 30rem;
   padding: 20px;
   border-radius: 10px;
@@ -35,7 +37,8 @@
   background-color: #d3c5cd;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
+  width: 83vw;
 }
 .error_msg {
   font-size: smaller;
@@ -57,4 +60,14 @@
   border: 0.5px solid white;
   color: white;
   transition-duration: 0.4s;
+}
+@media screen and ( max-width : 1183px) {
+  .container {
+    display: flex;
+    background-color: #d3c5cd;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+  }
 }
