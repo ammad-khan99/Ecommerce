@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./UserCart.module.css";
 import CartCard from "../../components/cart-card/CartCard";
-import Navbar from "../../components/nav/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCart } from "../../store/actions";
 
@@ -24,7 +23,6 @@ function UserCart() {
 
   return (
     <>
-      <Navbar />
       <div className={style.cartPage}>
         <div className={style.header}>
           <h2 className={style.heading}> User Cart ${totalPrice}</h2>

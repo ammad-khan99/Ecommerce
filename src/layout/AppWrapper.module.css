@@ -1,4 +1,10 @@
 .body{
     display: flex;
-    width: 100vw;
+    /* width: 100vw; */
+}
+.filter{
+    width: 20vw;
+}
+.outlet{
+    width: 80vw;
 }

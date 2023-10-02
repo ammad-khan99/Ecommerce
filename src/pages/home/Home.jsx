@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../../components/nav/Navbar";
 import cr3 from "./../../logo/login.jpg";
 import cr1 from "./../../logo/slider1.jpg";
+import './Home.module.css'
 
 function Home() {
   return (
-    <div className="home">
+    <div className="home w-70">
       <div
         id="carouselExampleDark"
         className="carousel carousel-dark slide"

@@ -40,9 +40,9 @@ function Navbar() {
           Logout
         </button>
       </div>
-      <div>
+      {/* <div className="menu" >
         <Menu onClick={toggler} className="menu" color="#be6b9b" />
-      </div>
+      </div> */}
     </nav>
   );
 }
