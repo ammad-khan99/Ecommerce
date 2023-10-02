@@ -3,13 +3,13 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 80vw;
+  width: 100%;
 }
 .body {
   display: flex;
 }
-@media screen and (max-width: 1181px) {
+/* @media screen and (max-width: 1181px) {
   .prod_page {
     width: 100vw;
   }
-}
+} */
