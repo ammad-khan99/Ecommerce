@@ -1,0 +1,145 @@
+import React, { useEffect, useState } from "react";
+import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
+import style from "./LoginModals.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { hideModal, userLogin } from "../../store/actions/userActions";
+import Close from '../../logo/x.svg'
+import { X } from "react-feather";
+
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+    background: "rgba(255, 255, 255, 0.14)",
+    borderRadius: "16px",
+    backdropFilter: "blur(5px)",
+    webkitBackdropFilter: "blur(5px)"
+  },
+};
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+// Modal.setAppElement('#yourAppElement');
+
+function LoginModal() {
+  const userInit = {
+    email: "", password: "" 
+  }
+  const [credentials, setCredentials] = useState(userInit);
+  const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    // subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    dispatch(hideModal());
+  }
+
+  const getUsers = async () => {
+    const data = await fetch("https://fakestoreapi.com/users");
+    const response = await data.json();
+    setUsers(response);
+  };
+  console.log(users);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  const validateEmail = () => {
+    if (credentials.email.includes("@")) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const validatePassword = () => {
+    if (credentials.password.length >= 4) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const handleSubmit = (e) => {
+    if (validateEmail() && validatePassword()) {
+      users.forEach((user) => {
+        if (
+          user.email === credentials.email &&
+          user.password === credentials.password
+        ) {
+          dispatch(userLogin());
+    setCredentials(userInit);
+        }
+      });
+    } else {
+      e.preventDefault();
+      // alert("Incorrect email or password");
+      navigate("/");
+    }
+  };
+
+  return (
+    <div>
+      {/* <button onClick={openModal}>Open Modal</button> */}
+      <Modal
+        isOpen={user?.showModal}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <button className={style.close} onClick={closeModal}><X/></button>
+        <form className={style.form} onSubmit={handleSubmit}>
+          <h3 className={style.heading}>Login your account</h3>
+          <input
+            placeholder="Enter your email"
+            className={style.form_elements}
+            type="email"
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
+          ></input>
+          <p className={style.error_msg}>
+            {validateEmail() ? `` : `Enter a valid email`}
+          </p>
+          <input
+            placeholder="Enter your password"
+            className={style.form_elements}
+            type="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+          ></input>
+          <p className={style.error_msg}>
+            {validatePassword()
+              ? ``
+              : `Password should contain atleast 4 characters`}
+          </p>
+          <input className={style.login_btn} type="submit" value="Login" />
+        </form>
+      </Modal>
+    </div>
+  );
+}
+
+export default LoginModal;

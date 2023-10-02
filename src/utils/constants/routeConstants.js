@@ -1,6 +1,6 @@
 const routeConstants = 
   {
-    DEFAULT_ROUTE: "/",
+    LOGIN_ROUTE: "/login",
     HOME_ROUTE: "/home",
     PRODUCTS_ROUTE: "/products",
     CART_ROUTE: "/cart",

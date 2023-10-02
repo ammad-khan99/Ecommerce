@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../../store/actions/userActions";
 
 function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const user = useSelector(store => store.user)
 
   useEffect(() => {
     getUsers();
@@ -48,6 +52,7 @@ function Login() {
           user.email === credentials.email &&
           user.password === credentials.password
         ) {
+  dispatch(userLogin());
           localStorage.setItem("isLoggedIn", JSON.stringify(true));
           navigate("/home");
         }

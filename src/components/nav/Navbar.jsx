@@ -3,12 +3,17 @@ import "./Navbar.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ShoppingCart, Menu } from "react-feather";
 import logo from "./../../logo/website-logo.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { showModal, userLogout } from "../../store/actions/userActions";
 
 function Navbar() {
   const [active, setActive] = useState("links");
   const [itemCount, setItemCount] = useState(0);
   const cart = useSelector((data) => data.cart.carts);
+  const user = useSelector((store) => store.user);
+  console.log("user :", user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const itemQuantity = cart.reduce((acc, item) => {
@@ -20,10 +25,14 @@ function Navbar() {
     active === "links" ? setActive("links nav_active") : setActive("links");
   };
 
-  const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    navigate("/");
+    if (user?.isLoggedIn) {
+      dispatch(userLogout());
+      localStorage.removeItem("isLoggedIn");
+      navigate("/home");
+    } else {
+      dispatch(showModal());
+    }
   };
 
   return (
@@ -32,12 +41,14 @@ function Navbar() {
         <img height="37rem" src={logo} alt="logo" />
       </div>
       <div className="logout">
-      <NavLink className="link_elements" to="/cart">
-          <ShoppingCart />
-          <span className="cart_count">{itemCount}</span>
-        </NavLink>
+        {user && user.isLoggedIn && (
+          <NavLink className="link_elements" to="/cart">
+            <ShoppingCart />
+            <span className="cart_count">{itemCount}</span>
+          </NavLink>
+        )}
         <button className="log" onClick={handleLogout}>
-          Logout
+          {user?.isLoggedIn ? "Logout" : "Login"}
         </button>
       </div>
       {/* <div className="menu" >

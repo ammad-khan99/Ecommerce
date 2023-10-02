@@ -11,4 +11,11 @@ const inventoryActions = {
   GET_PRODUCTS_FAILURE: "GET_PRODUCTS_FAILURE",
 };
 
-export { cartActions, inventoryActions };
+const userActions = {
+  USER_LOGIN: "USER_LOGIN",
+  USER_LOGOUT: "USER_LOGOUT",
+  SHOW_MODAL: "SHOW_MODAL",
+  HIDE_MODAL: "HIDE_MODAL"
+};
+
+export { cartActions, inventoryActions, userActions };

@@ -8,7 +8,7 @@ import { routeConstants } from "./utils/constants";
 
 export const routes = [
   {
-    path: routeConstants.DEFAULT_ROUTE,
+    path: routeConstants.LOGIN_ROUTE,
     element: <Login />,
     isProtected:false,
     exact: true
@@ -22,13 +22,13 @@ export const routes = [
   {
     path: routeConstants.HOME_ROUTE,
     element: <Home />,
-    isProtected:true,
+    isProtected:false,
     exact: true
   },
   {
     path: routeConstants.PRODUCTS_ROUTE,
     element: <Products />,
-    isProtected:true,
+    isProtected:false,
     exact: true
   },
   {
@@ -40,7 +40,7 @@ export const routes = [
   {
     path: routeConstants.CONTACT_ROUTE,
     element: <ContactForm />,
-    isProtected:true,
+    isProtected:false,
     exact: true
   },
 ];

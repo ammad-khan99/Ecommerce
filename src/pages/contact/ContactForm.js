@@ -1,13 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import style from "./Contact.module.css";
-import Navbar from "../../components/nav/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { showModal } from "../../store/actions/userActions";
 
 function ContactForm() {
   const [name, setName] = useState("");
   const [message, setmessage] = useState("");
   const [cell, setCell] = useState("");
   const [email, setEmail] = useState("");
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch()
 
   let invalid = name || message || cell || email ? false : true;
   const validateName = () => {
@@ -38,6 +41,7 @@ function ContactForm() {
 
   const handleSubmit = (e) => {
     if (
+      user?.isLoggedIn&&
       validateName() &&
       validatemessage() &&
       validateCellNumber() &&
@@ -50,8 +54,14 @@ function ContactForm() {
       setEmail("");
       setmessage("");
       setName("");
-    } else {
-      alert("Please enter valid values !");
+    } else if (
+      user?.isLoggedIn === false
+      ) {
+      console.log('else if');
+      dispatch(showModal())
+    }else{
+      console.log('else');
+      alert('Enter valid values')
     }
     e.preventDefault();
   };
@@ -93,7 +103,7 @@ function ContactForm() {
               </p>
             )}
             <br />
-          
+
             <input
               className={style.inputs}
               id="cell"
@@ -137,7 +147,7 @@ function ContactForm() {
               <p className={style.error_msg}>
                 Message should contain atmost 50 characters
               </p>
-            ) }
+            )}
             <br />
             <input
               className={style.submit_btn}

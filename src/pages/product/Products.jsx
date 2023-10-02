@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Product_card from "../../components/product-card/Product_card";
 import style from "./Products.module.css";
-import Navbar from "../../components/nav/Navbar";
-import CategoryFilter from "../../filter/CategoryFilter";
 import ClipLoader from "react-spinners/ClipLoader";
 import { fetchData } from "../../utils/helper/helper";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,7 +43,6 @@ function Products() {
 
   return (
     <>
-      {/* <Navbar /> */}
       {/* <div className={style.body}> */}
         {/* <CategoryFilter
           handleClickCategory={handleClickCategory}

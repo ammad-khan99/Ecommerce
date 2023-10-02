@@ -2,16 +2,23 @@ import React from "react";
 import style from "./Product_card.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../store/actions";
+import { useNavigate } from "react-router-dom";
+import { showModal } from "../../store/actions/userActions";
 // import { addItem } from "../../redux/slices/cartSlice";
 
 function Product_card(props) {
   const {data} = props
+  const navigate = useNavigate()
   const cartStore = useSelector(store => store.cart)
   // console.log('cartStore',cartStore);
   const dispatch = useDispatch();
 
   const handleAddToCart= () => {
-dispatch(addItem({product: data,quantity:1}))
+    if(JSON.parse(localStorage.getItem("isLoggedIn"))){
+      dispatch(addItem({product: data,quantity:1}))
+    }else{
+      dispatch(showModal())
+    }
   }
 
   return (

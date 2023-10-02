@@ -42,7 +42,7 @@ const cartReducer = (state = initialState, action) => {
     case cartActions.DEC_ITEM_COUNT: {
       const item = state.carts.map((cartItem) => {
         if (cartItem.id === action.payload) {
-          if (cartItem.quantity > 0) {
+          if (cartItem.quantity > 1) {
             cartItem.quantity--;
           }
         }
