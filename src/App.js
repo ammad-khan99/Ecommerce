@@ -1,9 +1,8 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route , Routes} from "react-router-dom";
 import "./App.css";
 import ProtectedRoute from "./pages/user-routes/ProtectedRoute";
 import { routes } from "./routes";
-import { Layout } from "react-feather";
 import AppWrapper from "./layout/AppWrapper";
 
 function App() {
