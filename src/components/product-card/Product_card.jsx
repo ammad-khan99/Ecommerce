@@ -8,13 +8,11 @@ import { showModal } from "../../store/actions/userActions";
 
 function Product_card(props) {
   const {data} = props
-  const navigate = useNavigate()
-  const cartStore = useSelector(store => store.cart)
-  // console.log('cartStore',cartStore);
+  const user = useSelector(store => store.user)
   const dispatch = useDispatch();
 
   const handleAddToCart= () => {
-    if(JSON.parse(localStorage.getItem("isLoggedIn"))){
+    if(user?.isLoggedIn){
       dispatch(addItem({product: data,quantity:1}))
     }else{
       dispatch(showModal())

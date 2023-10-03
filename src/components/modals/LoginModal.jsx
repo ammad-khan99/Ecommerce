@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./LoginModals.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal, userLogin } from "../../store/actions/userActions";
-import Close from '../../logo/x.svg'
 import { X } from "react-feather";
-
 
 const customStyles = {
   content: {
@@ -20,31 +18,23 @@ const customStyles = {
     background: "rgba(255, 255, 255, 0.14)",
     borderRadius: "16px",
     backdropFilter: "blur(5px)",
-    webkitBackdropFilter: "blur(5px)"
+    webkitBackdropFilter: "blur(5px)",
   },
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-// Modal.setAppElement('#yourAppElement');
-
 function LoginModal() {
   const userInit = {
-    email: "", password: "" 
-  }
+    email: "",
+    password: "",
+  };
   const [credentials, setCredentials] = useState(userInit);
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
     getUsers();
   }, []);
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
-  }
 
   function closeModal() {
     dispatch(hideModal());
@@ -60,7 +50,6 @@ function LoginModal() {
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-
     setCredentials({ ...credentials, [name]: value });
   };
 
@@ -88,27 +77,26 @@ function LoginModal() {
           user.password === credentials.password
         ) {
           dispatch(userLogin());
-    setCredentials(userInit);
+          setCredentials(userInit);
         }
       });
     } else {
       e.preventDefault();
-      // alert("Incorrect email or password");
-      navigate("/");
+      alert("Incorrect email or password");
     }
   };
 
   return (
     <div>
-      {/* <button onClick={openModal}>Open Modal</button> */}
       <Modal
         isOpen={user?.showModal}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button className={style.close} onClick={closeModal}><X/></button>
+        <button className={style.close} onClick={closeModal}>
+          <X />
+        </button>
         <form className={style.form} onSubmit={handleSubmit}>
           <h3 className={style.heading}>Login your account</h3>
           <input
