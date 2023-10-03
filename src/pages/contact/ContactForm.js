@@ -57,10 +57,8 @@ function ContactForm() {
     } else if (
       user?.isLoggedIn === false
       ) {
-      console.log('else if');
       dispatch(showModal())
     }else{
-      console.log('else');
       alert('Enter valid values')
     }
     e.preventDefault();

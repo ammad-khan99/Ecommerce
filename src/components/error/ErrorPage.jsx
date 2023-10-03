@@ -1,9 +1,11 @@
 import React from 'react'
+import { errorConstants } from '../../utils/constants'
+
 
 function ErrorPage() {
   return (
     <div>
-        <h1>Products not found</h1>
+        <h1>{errorConstants.PRODUCTS_NOT_FOUND}</h1>
     </div>
   )
 }
