@@ -1,31 +1,44 @@
-import {cartActions} from "../actions/actionTypes";
+import { cartActions } from "../actions/actionTypes";
 
 const initialState = {
   carts: [],
+  id: null,
 };
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case cartActions.ADD_ID: {
+      return {
+        ...state,
+        id: action.payload,
+      };
+    }
     case cartActions.ADD_ITEM: {
       const item = state.carts.findIndex(
         (cartItem) => cartItem.id === action.payload.product.id
       );
       if (item === -1) {
         return {
+          ...state,
           carts: [...state.carts, { ...action.payload.product, quantity: 1 }],
         };
       } else {
         const tempCart = [...state.carts];
-
         tempCart[item].quantity++;
-        return { carts: [...tempCart] };
+        return {
+          ...state,
+          carts: [...tempCart],
+        };
       }
     }
     case cartActions.DEL_ITEM: {
       const item = state.carts.filter(
         (cartItem) => cartItem.id !== action.payload
       );
-      return { carts: [...item] };
+      return {
+        ...state,
+        carts: [...item],
+      };
     }
     case cartActions.EMPTY_CART: {
       return { carts: [] };
@@ -37,7 +50,10 @@ const cartReducer = (state = initialState, action) => {
         }
         return cartItem;
       });
-      return { carts: [...item] };
+      return {
+        ...state,
+        carts: [...item],
+      };
     }
     case cartActions.DEC_ITEM_COUNT: {
       const item = state.carts.map((cartItem) => {
@@ -48,7 +64,10 @@ const cartReducer = (state = initialState, action) => {
         }
         return cartItem;
       });
-      return { carts: [...item] };
+      return {
+        ...state,
+        carts: [...item],
+      };
     }
     default:
       return state;

@@ -4,6 +4,7 @@ import style from "./LoginModals.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal, userLogin } from "../../store/actions/userActions";
 import { X } from "react-feather";
+import { addId } from "../../store/actions";
 
 const customStyles = {
   content: {
@@ -51,7 +52,7 @@ function LoginModal() {
     const response = await data.json();
     setUsers(response);
   };
-  // console.log(users);
+  console.log(users);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -102,6 +103,7 @@ function LoginModal() {
         ) {
           console.log('dispatch aside');
           dispatch(userLogin(user));
+          dispatch(addId(user.id));
           setCredentials(userInit);
         }
       });
