@@ -17,8 +17,8 @@ function App() {
               </Route>
             </Route>
           ) : (
-            <Route path="/" element={<AppWrapper />}>
-              <Route key={index} {...route} />
+            <Route key={index} path="/" element={<AppWrapper />}>
+              <Route {...route} />
             </Route>
           )
         )}

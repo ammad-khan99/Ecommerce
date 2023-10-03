@@ -12,7 +12,7 @@ const cartReducer = (state = initialState, action) => {
       );
       if (item === -1) {
         return {
-          carts: [...state.carts, { ...action.payload.product, quantity: 1 }],
+          carts: [...state.carts, { ...action.payload.product, quantity: 1,userId:action.payload.userId }],
         };
       } else {
         const tempCart = [...state.carts];

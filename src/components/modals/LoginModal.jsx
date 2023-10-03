@@ -17,7 +17,7 @@ const customStyles = {
     background: "rgba(255, 255, 255, 0.14)",
     borderRadius: "16px",
     backdropFilter: "blur(5px)",
-    webkitBackdropFilter: "blur(5px)",
+    WebkitBackdropFilter: "blur(5px)",
   },
 };
 

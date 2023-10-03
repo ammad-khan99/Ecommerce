@@ -13,7 +13,7 @@ function Product_card(props) {
 
   const handleAddToCart= () => {
     if(user?.isLoggedIn){
-      dispatch(addItem({product: data,quantity:1}))
+      dispatch(addItem({product: data,quantity:1,userId:user.currentUser.id}))
     }else{
       dispatch(showModal())
     }
