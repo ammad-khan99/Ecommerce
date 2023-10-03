@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./SideNav.module.css";
 import { NavLink, json } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +6,9 @@ import { userLogout } from "../../store/actions/userActions";
 
 function SideNav() {
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
-  const userLogin = JSON.parse(localStorage.getItem("persist:user"));
-
   const handleRoute = () => {
-    console.log("user in route : ", user.isLoggedIn);
-    if (userLogin?.isLoggedIn === "undefined") {
+    const userLogin = JSON.parse(localStorage.getItem("persist:user"));
+    if (userLogin?.isLoggedIn === undefined || userLogin?.isLoggedIn === "false" ) {
       dispatch(userLogout());
     }
   };
