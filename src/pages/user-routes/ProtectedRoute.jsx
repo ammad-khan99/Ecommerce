@@ -10,7 +10,7 @@ function ProtectedRoute() {
 
   useEffect(() => {
     setToken(user?.isLoggedIn);
-  }, []);
+  }, [user?.isLoggedIn]);
 
   return <>{token ? <Outlet /> : navigate("/home")}</>;
 }

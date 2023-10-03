@@ -51,20 +51,20 @@ function LoginModal() {
     const response = await data.json();
     setUsers(response);
   };
-  console.log(users);
+  // console.log(users);
 
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
-    if(e.target.name==='email'){
+    if (e.target.name === "email") {
       validateEmail(credentials.email)
         ? setError({ ...error, emailError: false })
         : setError({ ...error, emailError: true });
-    }else{
+    } else {
       validatePassword()
-      ? setError({ ...error, passError: false })
-      : setError({ ...error, passError: true });
+        ? setError({ ...error, passError: false })
+        : setError({ ...error, passError: true });
     }
   };
 
@@ -93,13 +93,15 @@ function LoginModal() {
   };
 
   const handleSubmit = (e) => {
+      e.preventDefault();
     if (validateEmail(credentials.email) && validatePassword()) {
       users.forEach((user) => {
         if (
           user.email === credentials.email &&
           user.password === credentials.password
         ) {
-          dispatch(userLogin());
+          console.log('dispatch aside');
+          dispatch(userLogin(user));
           setCredentials(userInit);
         }
       });
@@ -115,7 +117,6 @@ function LoginModal() {
         isOpen={user?.showModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
         <button className={style.close} onClick={closeModal}>
           <X />
@@ -124,7 +125,9 @@ function LoginModal() {
           <h3 className={style.heading}>Login your account</h3>
           <input
             placeholder="Enter your email"
-            className={ !error.emailError ?  style.form_elements : style.form_elements_err }
+            className={
+              !error.emailError ? style.form_elements : style.form_elements_err
+            }
             type="email"
             name="email"
             value={credentials.email}
@@ -137,7 +140,9 @@ function LoginModal() {
           </p>
           <input
             placeholder="Enter your password"
-            className={ !error.passError ?  style.form_elements : style.form_elements_err }
+            className={
+              !error.passError ? style.form_elements : style.form_elements_err
+            }
             type="password"
             name="password"
             value={credentials.password}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userLogin } from "../../../store/actions/userActions";
 
 function Login() {
@@ -9,7 +9,6 @@ function Login() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const user = useSelector(store => store.user)
 
   useEffect(() => {
     getUsers();
