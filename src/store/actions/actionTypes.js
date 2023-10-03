@@ -1,4 +1,5 @@
 const cartActions = {
+  ADD_ID: "ADD_ID",
   ADD_ITEM: "ADD_ITEM",
   EMPTY_CART: "EMPTY_CART",
   DEL_ITEM: "DEL_ITEM",

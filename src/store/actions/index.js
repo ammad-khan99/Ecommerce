@@ -1,5 +1,12 @@
 import {cartActions} from "./actionTypes"
 
+export const addId = (payload)=>{
+    return{
+        type: cartActions.ADD_ID,
+        payload: payload
+    }
+}
+
 export const addItem = (payload)=>{
     return{
         type: cartActions.ADD_ITEM,
