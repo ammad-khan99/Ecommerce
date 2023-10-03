@@ -18,12 +18,11 @@ function App() {
             </Route>
           ) : (
             <Route path="/" element={<AppWrapper />}>
-              <Route key={index} path={route.path} element={route.element} />
+              <Route key={index} {...route} />
             </Route>
           )
         )}
       </Routes>
-      
     </>
   );
 }

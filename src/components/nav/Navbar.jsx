@@ -11,7 +11,6 @@ function Navbar() {
   const [itemCount, setItemCount] = useState(0);
   const cart = useSelector((data) => data.cart.carts);
   const user = useSelector((store) => store.user);
-  console.log("user :", user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,8 +27,6 @@ function Navbar() {
   const handleLogout = () => {
     if (user?.isLoggedIn) {
       dispatch(userLogout());
-      localStorage.removeItem("isLoggedIn");
-      navigate("/home");
     } else {
       dispatch(showModal());
     }

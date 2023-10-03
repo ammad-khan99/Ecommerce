@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { useNavigate } from "react-router-dom";
 import style from "./LoginModals.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { hideModal, userLogin } from "../../store/actions/userActions";
@@ -27,7 +26,14 @@ function LoginModal() {
     email: "",
     password: "",
   };
+
+  const errorInit = {
+    emailError: false,
+    passError: false,
+  };
+
   const [credentials, setCredentials] = useState(userInit);
+  const [error, setError] = useState(errorInit);
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
@@ -51,14 +57,19 @@ function LoginModal() {
     e.preventDefault();
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
+    if(e.target.name==='email'){
+      validateEmail(credentials.email)
+        ? setError({ ...error, emailError: false })
+        : setError({ ...error, emailError: true });
+    }else{
+      validatePassword()
+      ? setError({ ...error, passError: false })
+      : setError({ ...error, passError: true });
+    }
   };
 
-  const validateEmail = () => {
-    if (credentials.email.includes("@")) {
-      return true;
-    } else {
-      return false;
-    }
+  const validateEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
   };
 
   const validatePassword = () => {
@@ -69,8 +80,20 @@ function LoginModal() {
     }
   };
 
+  const handleEmail = () => {
+    validateEmail(credentials.email)
+      ? setError({ ...error, emailError: false })
+      : setError({ ...error, emailError: true });
+  };
+
+  const handlePass = () => {
+    validatePassword()
+      ? setError({ ...error, passError: false })
+      : setError({ ...error, passError: true });
+  };
+
   const handleSubmit = (e) => {
-    if (validateEmail() && validatePassword()) {
+    if (validateEmail(credentials.email) && validatePassword()) {
       users.forEach((user) => {
         if (
           user.email === credentials.email &&
@@ -101,25 +124,29 @@ function LoginModal() {
           <h3 className={style.heading}>Login your account</h3>
           <input
             placeholder="Enter your email"
-            className={style.form_elements}
+            className={ !error.emailError ?  style.form_elements : style.form_elements_err }
             type="email"
             name="email"
             value={credentials.email}
+            onFocus={handleEmail}
+            onBlur={handleEmail}
             onChange={handleChange}
           ></input>
           <p className={style.error_msg}>
-            {validateEmail() ? `` : `Enter a valid email`}
+            {!error.emailError ? `` : `Enter a valid email`}
           </p>
           <input
             placeholder="Enter your password"
-            className={style.form_elements}
+            className={ !error.passError ?  style.form_elements : style.form_elements_err }
             type="password"
             name="password"
             value={credentials.password}
+            onFocus={handlePass}
+            onBlur={handlePass}
             onChange={handleChange}
           ></input>
           <p className={style.error_msg}>
-            {validatePassword()
+            {!error.passError
               ? ``
               : `Password should contain atleast 4 characters`}
           </p>

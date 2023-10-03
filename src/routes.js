@@ -23,7 +23,8 @@ export const routes = [
     path: routeConstants.HOME_ROUTE,
     element: <Home />,
     isProtected:false,
-    exact: true
+    exact: true,
+    index: 'index'
   },
   {
     path: routeConstants.PRODUCTS_ROUTE,
