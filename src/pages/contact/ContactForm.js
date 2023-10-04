@@ -54,7 +54,8 @@ function ContactForm() {
       setEmail("");
       setmessage("");
       setName("");
-    } else if (
+    }
+    else if (
       user?.isLoggedIn === false
       ) {
       dispatch(showModal())

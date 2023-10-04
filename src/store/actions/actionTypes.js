@@ -19,4 +19,9 @@ const userActions = {
   HIDE_MODAL: "HIDE_MODAL"
 };
 
-export { cartActions, inventoryActions, userActions };
+const errorActions = {
+  SHOW_ERROR: "SHOW_ERROR",
+  CLOSE_MODAL: "CLOSE_MODAL"
+};
+
+export { cartActions, inventoryActions, userActions, errorActions };

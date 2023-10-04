@@ -1,0 +1,10 @@
+.close{
+    background: transparent;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    color: darkmagenta;
+}
+.close:hover{
+    color: red
+}

@@ -3,7 +3,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../components/nav/Navbar";
 import style from "./AppWrapper.module.css";
 import SideNav from "../components/side-nav/SideNav";
-import LoginModal from "../components/modals/LoginModal";
+import LoginModal from "../components/modals/login/LoginModal";
+import ErrorModal from "../components/modals/error/ErrorModal";
 
 function AppWrapper() {
 
@@ -19,6 +20,7 @@ function AppWrapper() {
         </div>
       </div>
       <LoginModal />
+      <ErrorModal/>
     </div>
   );
 }

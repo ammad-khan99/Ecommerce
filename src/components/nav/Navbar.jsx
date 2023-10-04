@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ShoppingCart, Menu } from "react-feather";
 import logo from "./../../logo/website-logo.jpg";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,15 +11,18 @@ function Navbar() {
   const [itemCount, setItemCount] = useState(0);
   const cart = useSelector((data) => data.cart.carts);
   const user = useSelector((store) => store.user);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const itemQuantity = cart.reduce((acc, item) => {
+      if(item.userId === user.currentUser.id ){
       return acc + item.quantity;
+      }
+      return acc
     }, 0);
     setItemCount(itemQuantity);
   }, [cart]);
+  
   const toggler = () => {
     active === "links" ? setActive("links nav_active") : setActive("links");
   };

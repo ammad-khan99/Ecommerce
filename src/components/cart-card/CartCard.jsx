@@ -3,7 +3,7 @@ import style from "./CartCard.module.css";
 import { useDispatch } from "react-redux";
 import deleteIcon from "./../../logo/trash-2.svg";
 // import { delItem, decItemCount, incItemCount } from "../../redux/slices/cartSlice";
-import { delItem, decItemCount, incItemCount } from "../../store/actions/index";
+import { delItem, decItemCount, incItemCount } from "../../store/actions/cartActions";
 
 function CartCard(props) {
   const { quantity, image, id, title } = props.each;

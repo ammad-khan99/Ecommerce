@@ -6,9 +6,13 @@ import { userLogout } from "../../store/actions/userActions";
 
 function SideNav() {
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
   const handleRoute = () => {
     const userLogin = JSON.parse(localStorage.getItem("persist:user"));
-    if (userLogin?.isLoggedIn === undefined || userLogin?.isLoggedIn === "false" ) {
+    if (
+      user?.isLoggedIn &&
+      (userLogin?.isLoggedIn === undefined || userLogin?.isLoggedIn === "false")
+    ) {
       dispatch(userLogout());
     }
   };

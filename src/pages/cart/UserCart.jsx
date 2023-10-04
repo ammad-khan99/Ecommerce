@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import style from "./UserCart.module.css";
 import CartCard from "../../components/cart-card/CartCard";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyCart } from "../../store/actions";
+import { emptyCart } from "../../store/actions/cartActions";
 
 function UserCart() {
   const [totalPrice, setTotalPrice] = useState(0);
+  const user = useSelector((store) => store.user);
   const cartStore = useSelector((store) => store.cart.carts);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const price = cartStore.reduce(
       (acc, prod) => (acc = acc + prod.price * prod.quantity),
@@ -20,7 +20,7 @@ function UserCart() {
   const handleDelCart = () => {
     dispatch(emptyCart());
   };
-
+  
   return (
     <>
       <div className={style.cartPage}>
@@ -34,6 +34,7 @@ function UserCart() {
           <div className={style.cartDiv}>
             {cartStore.length > 0 ? (
               cartStore.map((each, index) => {
+                if(each.userId === user.currentUser.id )
                 return <CartCard key={index} each={each} />;
               })
             ) : (

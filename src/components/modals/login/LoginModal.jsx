@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import style from "./LoginModals.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { hideModal, userLogin } from "../../store/actions/userActions";
+import { hideModal, userLogin } from "../../../store/actions/userActions";
 import { X } from "react-feather";
-import { addId } from "../../store/actions";
+import { addId } from "../../../store/actions/cartActions";
+import axios from "axios";
+import { showError } from "../../../store/actions/errorActions";
 
 const customStyles = {
   content: {
@@ -48,9 +50,15 @@ function LoginModal() {
   }
 
   const getUsers = async () => {
-    const data = await fetch("https://fakestoreapi.com/users");
-    const response = await data.json();
-    setUsers(response);
+    try {
+      const data = await axios.get("https://fakestoreapi.com/users");
+      console.log("data using axios : ", data);
+      // const response = await data.json();
+      setUsers(data.data);
+    } catch (error) {
+      dispatch(showError(error.message))
+      console.log(error.message);
+    }
   };
   console.log(users);
 
@@ -94,16 +102,15 @@ function LoginModal() {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
     if (validateEmail(credentials.email) && validatePassword()) {
       users.forEach((user) => {
         if (
           user.email === credentials.email &&
           user.password === credentials.password
         ) {
-          console.log('dispatch aside');
           dispatch(userLogin(user));
-          dispatch(addId(user.id));
+          // dispatch(addId(user.id));
           setCredentials(userInit);
         }
       });
@@ -117,7 +124,7 @@ function LoginModal() {
     <div>
       <Modal
         isOpen={user?.showModal}
-        onRequestClose={closeModal}
+        // onRequestClose={closeModal}
         style={customStyles}
       >
         <button className={style.close} onClick={closeModal}>
