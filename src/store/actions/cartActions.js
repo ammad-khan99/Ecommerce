@@ -13,9 +13,10 @@ export const addItem = (payload)=>{
         payload: payload
     }
 }
-export const emptyCart = ()=>{
+export const emptyCart = (payload)=>{
     return{
-        type: cartActions.EMPTY_CART
+        type: cartActions.EMPTY_CART,
+        payload: payload
     }
 }
 export const delItem = (payload)=>{

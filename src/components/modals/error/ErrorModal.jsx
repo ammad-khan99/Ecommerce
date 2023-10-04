@@ -10,7 +10,6 @@ function ErrorModal() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const error = useSelector((store) => store.error);
-  console.log("error : ", error);
 
   const customStyles = {
     content: {

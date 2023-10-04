@@ -52,7 +52,6 @@ function LoginModal() {
   const getUsers = async () => {
     try {
       const data = await axios.get("https://fakestoreapi.com/users");
-      console.log("data using axios : ", data);
       // const response = await data.json();
       setUsers(data.data);
     } catch (error) {

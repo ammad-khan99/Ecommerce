@@ -6,12 +6,6 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case cartActions.ADD_ID: {
-    //   return {
-    //     ...state,
-    //     // id: action.payload,
-    //   };
-    // }
     case cartActions.ADD_ITEM: {
       const item = state.carts.findIndex(
         (cartItem) => cartItem.id === action.payload.product.id
@@ -19,15 +13,36 @@ const cartReducer = (state = initialState, action) => {
       if (item === -1) {
         return {
           ...state,
-          carts: [...state.carts, { ...action.payload.product, quantity: 1, userId: action.payload.userId }],
+          carts: [
+            ...state.carts,
+            {
+              ...action.payload.product,
+              quantity: 1,
+              userId: action.payload.userId,
+            },
+          ],
         };
       } else {
         const tempCart = [...state.carts];
-        tempCart[item].quantity++;
-        return {
-          ...state,
-          carts: [...tempCart],
-        };
+        if (tempCart[item].userId === action.payload.userId) {
+          tempCart[item].quantity++;
+          return {
+            ...state,
+            carts: [...tempCart],
+          };
+        } else {
+          return {
+            ...state,
+            carts: [
+              ...state.carts,
+              {
+                ...action.payload.product,
+                quantity: 1,
+                userId: action.payload.userId,
+              },
+            ],
+          };
+        }
       }
     }
     case cartActions.DEL_ITEM: {
@@ -40,7 +55,10 @@ const cartReducer = (state = initialState, action) => {
       };
     }
     case cartActions.EMPTY_CART: {
-      return { carts: [] };
+      const emptyUsercart = state.carts.filter(
+        (cartItem) => cartItem.userId !== action.payload
+      );
+      return { carts: [...emptyUsercart] };
     }
     case cartActions.INC_ITEM_COUNT: {
       const item = state.carts.map((cartItem) => {

@@ -10,17 +10,19 @@ function UserCart() {
   const cartStore = useSelector((store) => store.cart.carts);
   const dispatch = useDispatch();
   useEffect(() => {
-    const price = cartStore.reduce(
-      (acc, prod) => (acc = acc + prod.price * prod.quantity),
-      0
-    );
+    const price = cartStore.reduce((acc, prod) => {
+      if (prod.userId === user.currentUser.id) {
+        return (acc = acc + prod.price * prod.quantity);
+      }
+      return acc;
+    }, 0);
     setTotalPrice(price.toFixed(2));
   }, [cartStore]);
 
   const handleDelCart = () => {
-    dispatch(emptyCart());
+    dispatch(emptyCart(user.currentUser.id));
   };
-  
+
   return (
     <>
       <div className={style.cartPage}>
@@ -34,8 +36,8 @@ function UserCart() {
           <div className={style.cartDiv}>
             {cartStore.length > 0 ? (
               cartStore.map((each, index) => {
-                if(each.userId === user.currentUser.id )
-                return <CartCard key={index} each={each} />;
+                if (each.userId === user.currentUser.id)
+                  return <CartCard key={index} each={each} />;
               })
             ) : (
               <p style={{ margin: 100 }}>No item added</p>
